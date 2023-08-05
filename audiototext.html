@@ -1,0 +1,129 @@
+<html>
+<head> 
+
+    <title> voice to text</title>
+
+    </head>
+
+  <style>
+
+
+    body {
+        background:#F5F5F5;
+    }
+
+    .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2%;
+    margin-right: 10%;
+
+    }
+    button {
+    width: 25%;
+    padding: 10px 20px ;
+    font-size: 16px;
+    border-radius: 25px;
+    background-color: #116A7B;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    }
+    button:hover {
+        background: #9DB2BF;
+        color: black;   
+
+    }
+    textarea{
+    background-color: #F5F5F5;
+    padding: 15px;
+    box-shadow: 0 0 3px #887575;
+    width: 60%;
+    height: 40%;
+    }
+    .imgro{
+    margin-left: 75%;
+    }
+    input{
+    width: 24%;
+    margin-top: 2%;
+    margin-left: 33%;
+    padding: 10px 20px ;
+    font-size: 16px;
+    border-radius: 25px;
+    background-color: #116A7B;
+    color: white;
+    border: none;
+    cursor: pointer;
+ 
+    }
+    input:hover {
+        background: #9DB2BF;
+        color: black;   
+
+    }
+   
+  </style>
+
+ <body>
+     
+
+<div class="content">
+    <button id="speak">Start speaking</button>
+</div>
+<form action="textcontent.php" method="post">
+<div class="content">
+ <textarea id="text" name="textarea" readonly placeholder="listening, please speak..."></textarea>
+
+</div>
+ <input type="submit" name="submit" value="Submit">
+
+</form>
+<div class="imgro">
+    <img src="sm-robot.svg"width="250" height="400">
+</div>
+
+
+
+
+<script type="text/javascript">
+
+const speakbtn =document.getElementById("speak"),
+text = document.querySelector("#text");
+
+speakbtn.addEventListener("click",()=>{
+ 
+
+  
+   let recog = new webkitSpeechRecognition();
+   //language can be changed to Arabia
+   //recog.lang="ar-AS";
+
+   recog.lang="en-GB";
+
+
+   recog.onresult=(eve)=>{
+
+
+        text.value = eve.results[0][0].transcript;
+
+   }
+
+   recog.start();
+
+
+})
+
+
+
+</script>
+
+
+
+
+ </body>
+
+  </html>
